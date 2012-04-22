@@ -13,23 +13,22 @@ use Doctrine\ORM\Mapping as ORM;
 class User extends BaseUser
 {
     /**
+     * User's id
+     * @var integer
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * 
-     * User's id
-     * @var integer
      */
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Group")
-     * @ORM\JoinTable(name="users_groups", 
-     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")})
-     *     
      * A list of groups the user belongs
      * @var Doctrine\Common\Collections\Collection
+     * @ORM\ManyToMany(targetEntity="Group")
+     * @ORM\JoinTable(name="users_groups",
+     *     joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     *       )
      */
     protected $groups;
 
