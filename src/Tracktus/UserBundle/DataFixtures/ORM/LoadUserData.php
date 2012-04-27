@@ -54,6 +54,11 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, O
 
         //Save in database
         $manager->flush();
+
+        $this->addReference('user', $user);
+        $this->addReference('projectLead', $projectLead);
+        $this->addReference('supervisor', $supervisor);
+
     }
 
     public function getOrder()

@@ -16,6 +16,7 @@ class Project {
     * Id of the project
     * @var int
     * @ORM\Id
+    * @ORM\GeneratedValue(strategy="AUTO")
     * @ORM\Column(type="integer")
     */
     private $id;
@@ -44,27 +45,25 @@ class Project {
 
     /**
      * Manager of the project
-     * @var User
-	* @ORM\OneToOne(targetEntity="Tracktus\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="manager", referencedColumnName="id")
+     * @var Tracktus\UserBundle\Entity\User
+	 * @ORM\ManyToOne(targetEntity="Tracktus\UserBundle\Entity\User")
      */
     private $manager;
 
     /**
      * Creator of the project
-     * @var User
-	 * @ORM\OneToOne(targetEntity="Tracktus\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="creator", referencedColumnName="id")
+     * @var Tracktus\UserBundle\Entity\User
+	 * @ORM\ManyToOne(targetEntity="Tracktus\UserBundle\Entity\User")
      */
     private $creator;
 
     /**
      * Members that collaborate on this project
-     * @var Doctrine\Common\Collection\ArrayCollection
+     * @var Doctrine\Common\Collections\ArrayCollection
 	 * @ORM\ManyToMany(targetEntity="Tracktus\UserBundle\Entity\User")
 	 * @ORM\JoinTable(name="users_projects",
 	 *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-	 *      inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id", unique=true)}
+	 *      inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")}
 	 *      )
      */
     private $members;
@@ -86,6 +85,7 @@ class Project {
         $this->description = $description;
         $this->creationDate = new \DateTime();
         $this->members = new ArrayCollection();
+        $this->finished = false;
     }
 
     /**
