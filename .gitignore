@@ -1,10 +1,7 @@
 app/cache/*
 app/logs/*
 app/*.cache
-<<<<<<< HEAD
-=======
 app/config/parameters.ini
->>>>>>> e8ffedb7df0aeffc96cb509ec5ff8cb109a1b502
 web/bundles/*
 web/uploads/*
 vendor
@@ -12,8 +9,4 @@ composer.phar
 composer.lock
 *.sublime-project
 *.sublime-workspace
-<<<<<<< HEAD
-app/config/parameters.ini
-=======
 doc
->>>>>>> e8ffedb7df0aeffc96cb509ec5ff8cb109a1b502
