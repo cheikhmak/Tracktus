@@ -28,6 +28,11 @@ security:
         "FOS\UserBundle\Model\UserInterface": sha512
 
     firewalls:
+        #Allow access to routes of profiler, web developper Toolbar and assets
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
         main:
             pattern: ^/
             form_login:
