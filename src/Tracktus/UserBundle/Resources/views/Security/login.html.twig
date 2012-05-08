@@ -4,7 +4,6 @@
     <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
     {% endif %}
     <div class="box">
-        <h2>Authentification</h2>
         <form action="{{ path("fos_user_security_check") }}" method="post">
             <p>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
