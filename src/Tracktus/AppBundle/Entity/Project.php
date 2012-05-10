@@ -89,6 +89,15 @@ class Project {
     }
 
     /**
+     * Get id of the project
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * Return the name of the project
      * @return string
      */
