@@ -2,7 +2,7 @@
 {% block title %}{{ 'project.new'|trans() }}{% endblock %}
 
 {% block content %}
-    <form action="" method="POST" {{ form_enctype(form) }}>
+    <form action="{{ path('project_new') }}" method="POST" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
         <input type="submit"/>
     </form>
