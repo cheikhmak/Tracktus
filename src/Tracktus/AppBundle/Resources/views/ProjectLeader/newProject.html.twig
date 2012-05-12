@@ -1,0 +1,9 @@
+{% extends 'TracktusAppBundle::layout.html.twig' %}
+{% block title %}{{ 'project.new'|trans() }}{% endblock %}
+
+{% block content %}
+    <form action="" method="POST" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit"/>
+    </form>
+{% endblock %}

@@ -2,7 +2,12 @@
 {% block title %}Dashboard - Tracktus{% endblock %}
 {% block content %}
     <h1>{{('dashboard'| trans())|capitalize}}</h1>
+    <div>
+    <a href="{{ path('project_new') }}">{{ 'dashboard.project.new' | trans() }}</a>
+    </div>
+    <div>
     {% for project in projects %}
         <a href="{{ path('project_show', {'id': project.id})}}">{{ project.name}}</a>
     {% endfor %}
+    </div>
 {% endblock %}
