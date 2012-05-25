@@ -7,7 +7,9 @@
     </div>
     <div>
     {% for project in projects %}
-        <a href="{{ path('project_show', {'id': project.id})}}">{{ project.name}}</a>
+        <div class="project">
+            <a href="{{ path('project_show', {'id': project.id})}}">{{ project.name}}</a>
+        </div>
     {% endfor %}
     </div>
 {% endblock %}
