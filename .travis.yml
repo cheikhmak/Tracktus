@@ -1,4 +1,7 @@
 language: php
 php:
     - 5.3
-before_script: php bin/vendors install
+before_script:
+    - php bin/vendors install
+    - php app/console doctrine:database:create
+    - php app/console doctrine:schema:create
