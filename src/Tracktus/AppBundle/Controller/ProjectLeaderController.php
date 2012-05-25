@@ -24,9 +24,10 @@ class ProjectLeaderController extends Controller
     public function showDashboardAction(Request $request)
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $projectManager = new ProjectManager($em);
+        
         $user = $this->get('security.context')->getToken()->getUser();
-        $projects = $projectManager->getProjectsOwnedBy($user);
+        $projects = $em->getRepository('Tracktus\AppBundle\Entity\Project')
+                ->getProjectsOwnedBy($user);
         return $this->render('TracktusAppBundle:ProjectLeader:dashboard.html.twig',
             array('projects' => $projects));
     }

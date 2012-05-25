@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Tracktus\AppBundle\Entity\Repository\ProjectRepository")
  * Represents a project in the tracker
  */
 class Project {
