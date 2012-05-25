@@ -3,13 +3,19 @@
 {% block content %}
     <h1>{{('dashboard'| trans())|capitalize}}</h1>
     <div>
-    <a href="{{ path('project_new') }}">{{ 'dashboard.project.new' | trans() }}</a>
+    <a href="{{ path('project_new') }}">{{ 'project.new' | trans() }}</a>
     </div>
     <div>
     {% for project in projects %}
         <div class="project">
             <a href="{{ path('project_show', {'id': project.id})}}">{{ project.name}}</a>
+            <div class="actions">
+                <a href="{{ path('project_delete', {'id': project.id}) }}">{{ 'project.delete'|trans() }}</a>
+            </div>
         </div>
+    {% else %}
+        {{ 'project.notfound'|trans() }}
     {% endfor %}
+    
     </div>
 {% endblock %}

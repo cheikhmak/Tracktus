@@ -72,4 +72,17 @@ class ProjectLeaderController extends Controller
                 array('form' => $form->createView()));
         
     }
+    
+    /**
+     * Delete a project
+     * @return Response
+     * @Configuration\Route("/project/delete/{id}", requirements={"id" = "\d+"}, name="project_delete")
+     * @Configuration\Method("GET")
+     */
+    public function deleteProject(Project $project) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->remove($project);
+        $em->flush();
+        return $this->redirect($this->generateUrl("dashboard"));
+    }
 }
