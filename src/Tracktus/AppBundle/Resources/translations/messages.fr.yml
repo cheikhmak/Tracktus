@@ -1,0 +1,5 @@
+dashboard: Tableau de bord
+project:
+  new: Nouveau projet
+  delete: Supprimer
+  notfound: Aucun projet trouvé
