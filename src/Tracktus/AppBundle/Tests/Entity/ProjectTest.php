@@ -15,7 +15,9 @@ class ProjectTest extends \PHPUnit_Framework_TestCase {
     public function testGetters() {
         $this->assertEquals('Projet 1', $this->project->getName());
         $this->assertEquals('Test project', $this->project->getDescription());
-        $this->assertEquals(new \DateTime(), $this->project->createdAt());
+        $date = new \DateTime();
+        $presentDay = $date->format('d/m/Y');
+        $this->assertEquals($presentDay, $this->project->createdAt()->format('d/m/Y'));
     }
 
     public function testGenericSetter()
