@@ -15,7 +15,7 @@ class RedirectController extends Controller
      * Redirect the to the dashboard route
      * @param  Request $request Incomming request
      * @return RedirectResponse
-     * @Configuration\Route("/")
+     * @Configuration\Route("/", name="homepage")
      */
     public function redirectToDashboardAction(Request $request)
     {
