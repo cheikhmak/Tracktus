@@ -65,7 +65,8 @@ class ProjectLeaderController extends Controller
                 $project->setCreator($user);
                 $em->persist($project);
                 $em->flush();
-                return $this->redirect($this->generateUrl('dashboard'));
+                return $this->redirect($this->generateUrl('project_show', 
+                        array('id'=>$project->getId())));
             }
         }
         return $this->render('TracktusAppBundle:ProjectLeader:newProject.html.twig',
