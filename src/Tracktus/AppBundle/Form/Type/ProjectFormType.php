@@ -12,6 +12,7 @@ class ProjectFormType extends AbstractType {
     {
         $builder->add('name', 'text');
         $builder->add('description', 'textarea');
+        $builder->add('startDate', 'date');
     }
 
     public function getName() 

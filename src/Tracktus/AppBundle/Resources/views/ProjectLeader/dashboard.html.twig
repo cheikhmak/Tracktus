@@ -11,7 +11,7 @@
             <a href="{{ path('project_show', {'id': project.id})}}">{{ project.name}}</a>
             <div class="actions">
                 <a href="{{ path('project_delete', {'id': project.id}) }}">{{ 'project.delete'|trans() }}</a>
-                <a href="#">{{ 'project.parameters'|trans() }}</a>
+                <a href="{{ path('project_config', {'id': project.id}) }}">{{ 'project.parameters'|trans() }}</a>
             </div>
         </div>
     {% else %}

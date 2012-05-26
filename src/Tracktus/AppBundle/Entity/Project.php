@@ -25,53 +25,59 @@ class Project {
     /**
      * Name of the project
      * @var string
-	 * @ORM\Column(type="string", unique="true")
+     * @ORM\Column(type="string", unique="true")
      */
     private $name;
 
     /**
      * Description of the project
      * @var string
-	 * @ORM\Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $description;
 
     /**
      * Creation date of the project
      * @var \DateTime
-	 * @ORM\Column(type="date")
+     * @ORM\Column(type="date")
      */
     private $creationDate;
 
     /**
+     * Start date of the project
+     * @var \DateTime
+     * @ORM\Column(type="date", nullable="true")
+     */
+    private $startDate;
+    /**
      * Manager of the project
      * @var Tracktus\UserBundle\Entity\User
-	 * @ORM\ManyToOne(targetEntity="Tracktus\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Tracktus\UserBundle\Entity\User")
      */
     private $manager;
 
     /**
      * Creator of the project
      * @var Tracktus\UserBundle\Entity\User
-	 * @ORM\ManyToOne(targetEntity="Tracktus\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Tracktus\UserBundle\Entity\User")
      */
     private $creator;
 
     /**
      * Members that collaborate on this project
      * @var Doctrine\Common\Collections\ArrayCollection
-	 * @ORM\ManyToMany(targetEntity="Tracktus\UserBundle\Entity\User")
-	 * @ORM\JoinTable(name="users_projects",
-	 *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-	 *      inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")}
-	 *      )
+     * @ORM\ManyToMany(targetEntity="Tracktus\UserBundle\Entity\User")
+     * @ORM\JoinTable(name="users_projects",
+     *       joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *       inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")}
+     *       )
      */
     private $members;
 
     /**
      * Indicates whether a project is finished or not
      * @var bool
-	 * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean")
      */
     private $finished;
 
@@ -225,4 +231,24 @@ class Project {
     {
         return $this->finished;
     }
+    
+    /**
+     * Return the start date of the project
+     * @return \DateTime
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+    
+    /**
+     * Set the start date of the project
+     * @param \DateTime $startDate The start date
+     */
+    public function setStartDate(\DateTime $startDate)
+    {
+        $this->startDate = $startDate;
+    }
+    
+    
 }

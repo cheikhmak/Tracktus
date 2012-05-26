@@ -55,6 +55,7 @@ class ProjectLeaderController extends Controller
     {
         $project = new Project();
         $form = $this->createForm(new ProjectFormType(), $project);
+        $form->remove('startDate');
 
         if ($request->getMethod() === 'POST') {
             $form->bindRequest($request);
@@ -85,5 +86,31 @@ class ProjectLeaderController extends Controller
         $em->remove($project);
         $em->flush();
         return $this->redirect($this->generateUrl("dashboard"));
+    }
+    
+    /**
+     * Configure the parameters of the project
+     * @param Project $project
+     * @return Response
+     * @Configuration\Route("/project/config/{id}", requirements={"id" = "\d+"}, name="project_config")
+     * @Configuration\Method({"GET", "POST"})
+     */
+    public function configureParameters(Project $project)
+    {
+        $form = $this->createForm(new ProjectFormType(), $project);
+        $request = $this->getRequest();
+        if ($request->getMethod() === 'POST')
+        {
+            $form->bindRequest($request);
+            if ($form->isValid())
+            {
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($project);
+                $em->flush();
+            }
+        }
+        return $this->render('TracktusAppBundle:ProjectLeader:parameters.html.twig',
+                array('configForm' => $form->createView(),
+                         'project' => $project));
     }
 }
