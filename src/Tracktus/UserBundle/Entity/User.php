@@ -26,8 +26,8 @@ class User extends BaseUser
      * @var Doctrine\Common\Collections\Collection
      * @ORM\ManyToMany(targetEntity="Group")
      * @ORM\JoinTable(name="users_groups",
-     *     joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
      *       )
      */
     protected $groups;
