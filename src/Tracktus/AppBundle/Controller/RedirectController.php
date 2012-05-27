@@ -19,7 +19,16 @@ class RedirectController extends Controller
      */
     public function redirectToDashboardAction(Request $request)
     {
-        return $this->redirect($this->generateUrl('dashboard'));
+        /**
+         * @var Tracktus\UserBundle\Entity\User 
+         */
+        $user = $this->get('security.context')->getToken()->getUser();
+        
+        if ($user->hasRole('USER_PROJECT_LEADER')) {
+            return $this->redirect($this->generateUrl('dashboard'));
+        }
+        //return new Response($user->getUserName());
+        
     }
 
     /**
