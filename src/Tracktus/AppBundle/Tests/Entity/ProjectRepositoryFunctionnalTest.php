@@ -16,7 +16,7 @@ class ProjectRepositoryFunctionnalTest extends WebTestCase
 {
 
     /**
-     * @var Doctrine\ORM\EntityManager 
+     * @var Doctrine\ORM\EntityManager
      */
     private $em;
 
@@ -41,7 +41,7 @@ class ProjectRepositoryFunctionnalTest extends WebTestCase
     {
         $options = array_merge($options, array('command' =>$command));
         return $this->application->run(new ArrayInput($options),
-                new NullOutput());
+            new NullOutput());
     }
 
     public function testProjectsOwnedBy()
@@ -49,11 +49,9 @@ class ProjectRepositoryFunctionnalTest extends WebTestCase
         $userManager = $this->container->get('fos_user.user_manager');
         $user = $userManager->findUserByUserName('fred');
         $projects = $this->em
-                ->getRepository('Tracktus\AppBundle\Entity\Project')
-                ->getProjectsOwnedBy($user);
+            ->getRepository('Tracktus\AppBundle\Entity\Project')
+            ->getProjectsOwnedBy($user);
         $this->assertNotEmpty($projects);
     }
 
 }
-
-?>
