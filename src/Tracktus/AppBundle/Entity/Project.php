@@ -158,7 +158,7 @@ class Project {
 
     /**
      * Set the manager
-     * @param User $user Manager of the project
+     * @param Tracktus\UserBundle\Entity\User $user Manager of the project
      */
     public function setManager(User $user)
     {
@@ -167,7 +167,7 @@ class Project {
 
     /**
      * Return the creator of the project
-     * @return User
+     * @return Tracktus\UserBundle\Entity\User
      */
     public function getCreator()
     {
@@ -176,7 +176,7 @@ class Project {
 
     /**
      * Set the creator of the project
-     * @param User $user Creator of the project
+     * @param Tracktus\UserBundle\Entity\User $user Creator of the project
      */
     public function setCreator(User $user)
     {
@@ -185,16 +185,21 @@ class Project {
 
     /**
      * Add a member to the project
-     * @param User $user Member to add
+     * @param Tracktus\UserBundle\Entity\User $user Member to add
      */
     public function addMember(User $user)
     {
         $this->members->add($user);
     }
 
+    public function removeMember(User $user)
+    {
+        $this->members->removeElement($user);
+    }
+
     /**
      * Get all the members of the project
-     * @return \Doctrine\Common\Collection\ArrayCollection
+     * @return Doctrine\Common\Collection\ArrayCollection
      */
     public function getMembers()
     {
@@ -203,7 +208,7 @@ class Project {
 
     /**
      * Determines if a member
-     * @param  User    $user the user
+     * @param  Tracktus\UserBundle\Entity\User    $user the user
      * @return boolean
      */
     public function isMember(User $user)
@@ -214,6 +219,7 @@ class Project {
     /**
      * Set if the project is finished
      * @param boolean $state the state of the project
+     * @throws \InvalidArgumentException if $state is not a boolean
      */
     public function setFinished($state)
     {
