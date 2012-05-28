@@ -4,6 +4,9 @@ namespace Tracktus\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Tracktus\UserBundle\Entity\User;
+use Tracktus\AppBundle\Entity\Project;
+use Tracktus\AppBundle\Entity\Comment;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -44,7 +47,7 @@ class Task
 
     /**
      * The user in charge of the task
-     * @var Tracktus\UserBundle\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="Tracktus\UserBundle\Entity\User", inversedBy="tasks")
      * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
      */
@@ -71,19 +74,185 @@ class Task
      * @var \DateTime
      * @ORM\Column(type="date")
      */
-    private $createdAt;
+    private $creationDate;
 
     /**
      * The project relative to the task
-     * @var Tracktus\AppBundle\Project
+     * @var Project
+     * @param string $name
      */
     private $project;
 
-    public function __construct()
+    public function __construct($name = null, $description = null)
     {
         $this->labels = new ArrayCollection();
         $this->comments = new ArrayCollection();
-        $this->createdAt = new \DateTime();
+        $this->creationDate = new \DateTime();
+        $this->name = $name;
+        $this->description = $description;
+        $this->state = false;
+    }
+
+    /**
+     * Set a collection of Comments to the task
+     * @param ArrayCollection $comments
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+    }
+
+    /**
+     * Return the list of comments relative to the task
+     * @return ArrayCollection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Add a new comment to the task
+     * @param Comment $comment
+     */
+    public function addComment($comment)
+    {
+        $this->comments->add($comment);
+    }
+
+    /**
+     * Remove a comment to the task
+     * @param Comment $comment
+     */
+    public function removeComment(Comment $comment)
+    {
+        $this->comments->remove($comment);
+    }
+
+    /**
+     * Return the creation date of the task
+     * @return \DateTime
+     */
+    public function createdAt()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * Set the description of the task
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Return the description of the task
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Return the Id of the task
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set a collection of labels to the task
+     * @param ArrayCollection $labels
+     */
+    public function setLabels($labels)
+    {
+        $this->labels = $labels;
+    }
+
+    /**
+     * Get the labels relative to task
+     * @return ArrayCollection
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Set the name of the task
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Return the name of the task
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the owner of the task
+     * @param User $owner
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
+    }
+
+    /**
+     * Get the owner of the task
+     * @return User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * Set the project relative to the task
+     * @param Project $project
+     */
+    public function setProject($project)
+    {
+        $this->project = $project;
+    }
+
+    /**
+     * Return the project relative to the task
+     * @return Project
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * Set the state of task
+     * @param string $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * Return the state of the task
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
     }
 
 }
