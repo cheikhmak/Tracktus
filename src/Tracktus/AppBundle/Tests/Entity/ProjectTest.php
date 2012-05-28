@@ -7,7 +7,11 @@ use Tracktus\UserBundle\Entity\User;
 
 class ProjectTest extends \PHPUnit_Framework_TestCase {
 
+    /**
+     * @var Project
+     */
     private $project;
+
     public function setUp() {
         $this->project = new Project('Projet 1', 'Test project');
     }
@@ -18,6 +22,7 @@ class ProjectTest extends \PHPUnit_Framework_TestCase {
         $date = new \DateTime();
         $presentDay = $date->format('d/m/Y');
         $this->assertEquals($presentDay, $this->project->createdAt()->format('d/m/Y'));
+        $this->assertEquals(null, $this->project->getId());
     }
 
     public function testGenericSetter()
@@ -48,15 +53,16 @@ class ProjectTest extends \PHPUnit_Framework_TestCase {
         $this->project->addMember($user);
         $members = $this->project->getMembers();
         $this->assertContains($user, $members);
+        $this->assertCount(1, $members);
     }
 
     public function testIsMember()
     {
         $member = new User();
-        $notAmember = new User();
+        $notAMember = new User();
         $this->project->addMember($member);
         $this->assertTrue($this->project->isMember($member));
-        $this->assertFalse($this->project->isMember($notAmember));
+        $this->assertFalse($this->project->isMember($notAMember));
     }
 
     public function testIsFinished()
@@ -69,5 +75,25 @@ class ProjectTest extends \PHPUnit_Framework_TestCase {
     {
         $this->setExpectedException('\InvalidArgumentException');
         $this->project->setFinished("dfghjk");
+    }
+
+    public function testStartDate()
+    {
+        $date = new \DateTime('now');
+        $this->project->setStartDate($date);
+        $this->assertEquals($date, $this->project->getStartDate());
+    }
+
+    public function testRemoveMember()
+    {
+        $user1 = new User();
+        $user2 = new User();
+        $this->project->addMember($user1);
+        $this->project->addMember($user2);
+        $this->assertCount(2, $this->project->getMembers());
+        $this->project->removeMember($user1);
+        $this->assertCount(1, $this->project->getMembers());
+        $this->assertNotContains($user1, $this->project->getMembers());
+        $this->assertContainsOnly($user2, $this->project->getMembers());
     }
 }
