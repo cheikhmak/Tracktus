@@ -94,15 +94,6 @@ class Task
     }
 
     /**
-     * Set a collection of Comments to the task
-     * @param ArrayCollection $comments
-     */
-    public function setComments($comments)
-    {
-        $this->comments = $comments;
-    }
-
-    /**
      * Return the list of comments relative to the task
      * @return ArrayCollection
      */
@@ -117,6 +108,11 @@ class Task
      */
     public function addComment($comment)
     {
+        if ($comment->getText() ==""||$comment->getText() === null)
+        {
+            throw new \DomainException('$comment cannot be blank');
+        }
+
         $this->comments->add($comment);
     }
 
@@ -126,7 +122,7 @@ class Task
      */
     public function removeComment(Comment $comment)
     {
-        $this->comments->remove($comment);
+        $this->comments->removeElement($comment);
     }
 
     /**
@@ -166,21 +162,35 @@ class Task
     }
 
     /**
-     * Set a collection of labels to the task
-     * @param ArrayCollection $labels
-     */
-    public function setLabels($labels)
-    {
-        $this->labels = $labels;
-    }
-
-    /**
      * Get the labels relative to task
      * @return ArrayCollection
      */
     public function getLabels()
     {
         return $this->labels;
+    }
+
+    /**
+     * Add a label to the task
+     * @param Label $label
+     */
+    public function addLabel(Label $label)
+    {
+        $this->labels->add($label);
+    }
+
+    /**
+     * Remove a label associated to the task
+     * @param Label $label
+     */
+    public function removeLabel(Label $label)
+    {
+        $this->labels->removeElement($label);
+    }
+
+    public function getNumberOfComments()
+    {
+        return count($this->getComments());
     }
 
     /**
