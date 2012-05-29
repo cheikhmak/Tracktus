@@ -10,3 +10,4 @@ composer.lock
 *.sublime-project
 *.sublime-workspace
 doc
+.idea/
