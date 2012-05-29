@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Represent a task in the tracker
- * @ORM\Entity()
+ * @ORM\Entity
  */
 class Task
 {
@@ -66,6 +66,7 @@ class Task
     /**
      * Comments on the task
      * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Tracktus\Appbundle\Entity\Comment", mappedBy="task")
      */
     private $comments;
 
@@ -79,10 +80,14 @@ class Task
     /**
      * The project relative to the task
      * @var Project
-     * @param string $name
+     * @ORM\ManyToOne(targetEntity="Tracktus\AppBundle\Entity\Project", inversedBy="tasks")
      */
     private $project;
 
+    /**
+     * @param string|null $name The name of the project
+     * @param string|null $description Description of the project
+     */
     public function __construct($name = null, $description = null)
     {
         $this->labels = new ArrayCollection();
@@ -105,6 +110,7 @@ class Task
     /**
      * Add a new comment to the task
      * @param Comment $comment
+     * @throws \DomainException If $comment is blank
      */
     public function addComment($comment)
     {

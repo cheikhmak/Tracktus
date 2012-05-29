@@ -4,6 +4,7 @@ namespace Tracktus\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Tracktus\UserBundle\Entity\User;
+use Tracktus\AppBundle\Entity\Task;
 
 /**
  * Comment on a task
@@ -38,6 +39,13 @@ class Comment
      */
     private $author;
 
+    /**
+     * The task which is commented
+     * @var Task
+     * @ORM\ManyToOne(targetEntity="Tracktus\AppBundle\Entity\Task", inversedBy="comments")
+     */
+    private $task;
+
 
     public function __construct($text= null, User $author = null)
     {
@@ -55,6 +63,7 @@ class Comment
 
     /**
      * @param string $text
+     * @throws \InvalidArgumentException if $text is null or not a string
      */
     public function setText($text)
     {
@@ -87,5 +96,21 @@ class Comment
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * @param \Tracktus\AppBundle\Entity\Task $task
+     */
+    public function setTask($task)
+    {
+        $this->task = $task;
+    }
+
+    /**
+     * @return \Tracktus\AppBundle\Entity\Task
+     */
+    public function getTask()
+    {
+        return $this->task;
     }
 }
