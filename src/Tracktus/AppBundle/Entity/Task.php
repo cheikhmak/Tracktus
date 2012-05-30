@@ -66,7 +66,7 @@ class Task
     /**
      * Comments on the task
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Tracktus\Appbundle\Entity\Comment", mappedBy="task")
+     * @ORM\OneToMany(targetEntity="Tracktus\AppBundle\Entity\Comment", mappedBy="task")
      */
     private $comments;
 
