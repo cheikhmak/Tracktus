@@ -3,8 +3,8 @@
 namespace Tracktus\AppBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
-
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
 * @ORM\Entity
@@ -23,7 +23,7 @@ class User extends BaseUser
 
     /**
      * A list of groups the user belongs
-     * @var Doctrine\Common\Collections\Collection
+     * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="Group")
      * @ORM\JoinTable(name="users_groups",
      *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
@@ -35,5 +35,6 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->groups = new ArrayCollection();
     }
 }
