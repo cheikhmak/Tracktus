@@ -12,13 +12,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
 * Data fixtures for Projects
 */
-class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
 {
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container =$container;
-    }
-
 	public function load(ObjectManager $manager)
 	{
         $project1 = new Project("Foo Project", "Create a foo thing");
