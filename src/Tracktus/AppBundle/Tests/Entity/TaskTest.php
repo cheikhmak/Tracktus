@@ -55,7 +55,7 @@ class TaskTest extends \PHPUnit_Framework_TestCase
 
     public function testState()
     {
-        $this->assertEquals(false,$this->task->getState());
+        $this->assertEquals('task.unstarted',$this->task->getState());
         $this->task->setState(true);
         $this->assertEquals(true, $this->task->getState());
     }
