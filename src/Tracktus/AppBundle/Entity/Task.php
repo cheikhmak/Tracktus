@@ -41,7 +41,7 @@ class Task
      * State of the task (started, finished, accepted)
      * @var string
      * @ORM\Column(type="text")
-     * @Assert\Choice(choices={"task.started", "task.finished", "task.accepted"})
+     * @Assert\Choice(choices={"task.unstarted","task.started", "task.finished", "task.accepted"})
      */
     private $state;
 
@@ -95,7 +95,7 @@ class Task
         $this->creationDate = new \DateTime();
         $this->name = $name;
         $this->description = $description;
-        $this->state = false;
+        $this->state = 'task.unstarted';
     }
 
     /**
