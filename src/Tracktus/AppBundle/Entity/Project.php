@@ -52,14 +52,14 @@ class Project {
     private $startDate;
     /**
      * Manager of the project
-     * @var Tracktus\AppBundle\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="Tracktus\AppBundle\Entity\User")
      */
     private $manager;
 
     /**
      * Creator of the project
-     * @var Tracktus\AppBundle\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="Tracktus\AppBundle\Entity\User")
      */
     private $creator;

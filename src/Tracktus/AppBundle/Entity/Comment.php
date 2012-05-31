@@ -33,7 +33,7 @@ class Comment
     
     /**
      * The User who post the comment
-     * @var Tracktus\AppBundle\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="Tracktus\AppBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
