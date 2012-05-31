@@ -1,7 +1,7 @@
 <?php
 
-namespace Tracktus\UserBundle\Tests\Entity;
-use Tracktus\UserBundle\Entity\User;
+namespace Tracktus\AppBundle\Tests\Entity;
+use Tracktus\AppBundle\Entity\User;
 
 /**
 * 

@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Configuration;
 use Tracktus\AppBundle\Entity\Project;
-use Tracktus\UserBundle\Entity\User;
+use Tracktus\AppBundle\Entity\User;
 use Tracktus\AppBundle\Form\Type\ProjectFormType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 

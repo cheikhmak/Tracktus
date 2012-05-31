@@ -1,6 +1,6 @@
 <?php
 
-namespace Tracktus\UserBundle;
+namespace Tracktus\AppBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

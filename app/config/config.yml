@@ -63,6 +63,6 @@ jms_security_extra:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Tracktus\UserBundle\Entity\User
+    user_class: Tracktus\AppBundle\Entity\User
     group:
-      group_class: Tracktus\UserBundle\Entity\Group
+      group_class: Tracktus\AppBundle\Entity\Group

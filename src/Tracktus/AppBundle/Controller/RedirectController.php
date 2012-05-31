@@ -20,7 +20,7 @@ class RedirectController extends Controller
     public function redirectToDashboardAction(Request $request)
     {
         /**
-         * @var Tracktus\UserBundle\Entity\User 
+         * @var Tracktus\AppBundle\Entity\User
          */
         $user = $this->get('security.context')->getToken()->getUser();
         

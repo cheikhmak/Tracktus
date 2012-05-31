@@ -1,7 +1,7 @@
 <?php
 namespace Tracktus\AppBundle\Entity\Repository;
 use Doctrine\ORM\EntityRepository;
-use Tracktus\UserBundle\Entity\User;
+use Tracktus\AppBundle\Entity\User;
 
 /**
  * Repository of Project entity

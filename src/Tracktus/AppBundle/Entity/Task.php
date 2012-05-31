@@ -4,7 +4,7 @@ namespace Tracktus\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Tracktus\UserBundle\Entity\User;
+use Tracktus\AppBundle\Entity\User;
 use Tracktus\AppBundle\Entity\Project;
 use Tracktus\AppBundle\Entity\Comment;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -48,7 +48,7 @@ class Task
     /**
      * The user in charge of the task
      * @var User
-     * @ORM\ManyToOne(targetEntity="Tracktus\UserBundle\Entity\User", inversedBy="tasks")
+     * @ORM\ManyToOne(targetEntity="Tracktus\AppBundle\Entity\User", inversedBy="tasks")
      * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
      */
     private $owner;

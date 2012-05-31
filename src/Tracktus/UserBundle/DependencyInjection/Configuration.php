@@ -1,6 +1,6 @@
 <?php
 
-namespace Tracktus\UserBundle\DependencyInjection;
+namespace Tracktus\AppBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tracktus\UserBundle\DependencyInjection;
+namespace Tracktus\AppBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

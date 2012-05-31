@@ -1,7 +1,7 @@
 <?php
 namespace Tracktus\AppBundle\Tests\Entity;
 use Tracktus\AppBundle\Entity\Comment;
-use Tracktus\UserBundle\Entity\User;
+use Tracktus\AppBundle\Entity\User;
 
 class CommentTest extends \PHPUnit_Framework_TestCase
 {

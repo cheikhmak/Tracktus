@@ -17,7 +17,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new Tracktus\UserBundle\TracktusUserBundle(),
+            new Tracktus\AppBundle\TracktusUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Tracktus\AppBundle\TracktusAppBundle(),
         );

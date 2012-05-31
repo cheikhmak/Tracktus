@@ -1,5 +1,5 @@
 <?php
-namespace Tracktus\UserBundle\Entity;
+namespace Tracktus\AppBundle\Entity;
 
 use FOS\UserBundle\Entity\Group as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;

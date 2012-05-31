@@ -2,7 +2,7 @@
 namespace Tracktus\AppBundle\Tests\Entity;
 
 use Tracktus\AppBundle\Entity\Task;
-use Tracktus\UserBundle\Entity\User;
+use Tracktus\AppBundle\Entity\User;
 use Tracktus\AppBundle\Entity\Project;
 use Tracktus\AppBundle\Entity\Label;
 use Tracktus\AppBundle\Entity\Comment;

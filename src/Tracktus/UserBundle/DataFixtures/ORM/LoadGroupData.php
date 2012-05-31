@@ -1,7 +1,7 @@
 <?php
 
-namespace Tracktus\UserBundle\DataFixtures\ORM;
-use Tracktus\UserBundle\Entity\Group;
+namespace Tracktus\AppBundle\DataFixtures\ORM;
+use Tracktus\AppBundle\Entity\Group;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;

@@ -3,7 +3,7 @@
 namespace Tracktus\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Tracktus\UserBundle\Entity\User;
+use Tracktus\AppBundle\Entity\User;
 use Tracktus\AppBundle\Entity\Task;
 
 /**
@@ -33,8 +33,8 @@ class Comment
     
     /**
      * The User who post the comment
-     * @var Tracktus\UserBundle\Entity\User
-     * @ORM\ManyToOne(targetEntity="Tracktus\UserBundle\Entity\User")
+     * @var Tracktus\AppBundle\Entity\User
+     * @ORM\ManyToOne(targetEntity="Tracktus\AppBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $author;

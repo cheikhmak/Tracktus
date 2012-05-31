@@ -2,7 +2,7 @@
 
 namespace Tracktus\AppBundle\Entity;
 
-use Tracktus\UserBundle\Entity\User;
+use Tracktus\AppBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Tracktus\AppBundle\Entity\Task;
@@ -52,22 +52,22 @@ class Project {
     private $startDate;
     /**
      * Manager of the project
-     * @var Tracktus\UserBundle\Entity\User
-     * @ORM\ManyToOne(targetEntity="Tracktus\UserBundle\Entity\User")
+     * @var Tracktus\AppBundle\Entity\User
+     * @ORM\ManyToOne(targetEntity="Tracktus\AppBundle\Entity\User")
      */
     private $manager;
 
     /**
      * Creator of the project
-     * @var Tracktus\UserBundle\Entity\User
-     * @ORM\ManyToOne(targetEntity="Tracktus\UserBundle\Entity\User")
+     * @var Tracktus\AppBundle\Entity\User
+     * @ORM\ManyToOne(targetEntity="Tracktus\AppBundle\Entity\User")
      */
     private $creator;
 
     /**
      * Members that collaborate on this project
      * @var Doctrine\Common\Collections\ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Tracktus\UserBundle\Entity\User")
+     * @ORM\ManyToMany(targetEntity="Tracktus\AppBundle\Entity\User")
      * @ORM\JoinTable(name="users_projects",
      *       joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *       inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")}
@@ -157,7 +157,7 @@ class Project {
 
     /**
      * Return the manager of the project
-     * @return Tracktus\UserBundle\Entity\User
+     * @return Tracktus\AppBundle\Entity\User
      */
     public function getManager()
     {
@@ -166,7 +166,7 @@ class Project {
 
     /**
      * Set the manager
-     * @param Tracktus\UserBundle\Entity\User $user Manager of the project
+     * @param Tracktus\AppBundle\Entity\User $user Manager of the project
      */
     public function setManager(User $user)
     {
@@ -175,7 +175,7 @@ class Project {
 
     /**
      * Return the creator of the project
-     * @return Tracktus\UserBundle\Entity\User
+     * @return Tracktus\AppBundle\Entity\User
      */
     public function getCreator()
     {
@@ -184,7 +184,7 @@ class Project {
 
     /**
      * Set the creator of the project
-     * @param Tracktus\UserBundle\Entity\User $user Creator of the project
+     * @param Tracktus\AppBundle\Entity\User $user Creator of the project
      */
     public function setCreator(User $user)
     {
@@ -193,7 +193,7 @@ class Project {
 
     /**
      * Add a member to the project
-     * @param Tracktus\UserBundle\Entity\User $user Member to add
+     * @param Tracktus\AppBundle\Entity\User $user Member to add
      */
     public function addMember(User $user)
     {
@@ -216,7 +216,7 @@ class Project {
 
     /**
      * Determines if a member
-     * @param  Tracktus\UserBundle\Entity\User    $user the user
+     * @param  Tracktus\AppBundle\Entity\User    $user the user
      * @return boolean
      */
     public function isMember(User $user)

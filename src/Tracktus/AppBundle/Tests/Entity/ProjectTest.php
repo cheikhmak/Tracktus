@@ -3,7 +3,7 @@
 namespace Tracktus\AppBundle\Tests\Entity;
 
 use Tracktus\AppBundle\Entity\Project;
-use Tracktus\UserBundle\Entity\User;
+use Tracktus\AppBundle\Entity\User;
 
 class ProjectTest extends \PHPUnit_Framework_TestCase {
 
