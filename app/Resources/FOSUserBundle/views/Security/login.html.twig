@@ -3,20 +3,25 @@
     {% if error %}
     <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
     {% endif %}
-    <div class="box">
-        <form action="{{ path("fos_user_security_check") }}" method="post">
+        <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal">
             <p>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-
-                <label for="username"><span>{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</span><input type="text" class ="input_text" id="username" name="_username" value="{{ last_username }}" /></label>
-
-                <label for="password"><span>{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</span><input type="password" class ="input_text" id="password" name="_password" /></label>
-
+                <div class="control-group">
+                    <label class="control-label" for="username" >{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+                    <div class="controls">
+                        <input type="text" class ="input_text" id="username" name="_username" value="{{ last_username }}" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                    <div class="controls">
+                        <input type="password" class ="input_text" id="password" name="_password" />
+                    </div>
+                </div>
                 <input type="submit" id="submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}"/>
 				<label for="remember_me"></label><input type="checkbox" class ="input_text" id="remember_me" name="_remember_me" value="on" /><span>{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</span>
             </p>
         </form>
         <p><a href="{{ path("fos_user_resetting_request") }}">{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}</a></p>
-    </div>
-    
+
 {% endblock %}
