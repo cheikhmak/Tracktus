@@ -66,7 +66,7 @@ class Project {
 
     /**
      * Members that collaborate on this project
-     * @var Doctrine\Common\Collections\ArrayCollection
+     * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="Tracktus\AppBundle\Entity\User")
      * @ORM\JoinTable(name="users_projects",
      *       joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
@@ -84,7 +84,7 @@ class Project {
 
     /**
      * Tasks relative to the project
-     * @var Task
+     * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="Tracktus\AppBundle\Entity\Task", mappedBy="project")
      */
     private $tasks;
@@ -100,6 +100,7 @@ class Project {
         $this->creationDate = new \DateTime();
         $this->members = new ArrayCollection();
         $this->finished = false;
+        $this->tasks = new ArrayCollection();
     }
 
     /**
@@ -157,7 +158,7 @@ class Project {
 
     /**
      * Return the manager of the project
-     * @return Tracktus\AppBundle\Entity\User
+     * @return User
      */
     public function getManager()
     {
@@ -166,7 +167,7 @@ class Project {
 
     /**
      * Set the manager
-     * @param Tracktus\AppBundle\Entity\User $user Manager of the project
+     * @param User $user Manager of the project
      */
     public function setManager(User $user)
     {
@@ -175,7 +176,7 @@ class Project {
 
     /**
      * Return the creator of the project
-     * @return Tracktus\AppBundle\Entity\User
+     * @return User
      */
     public function getCreator()
     {
@@ -184,7 +185,7 @@ class Project {
 
     /**
      * Set the creator of the project
-     * @param Tracktus\AppBundle\Entity\User $user Creator of the project
+     * @param User $user Creator of the project
      */
     public function setCreator(User $user)
     {
@@ -193,13 +194,17 @@ class Project {
 
     /**
      * Add a member to the project
-     * @param Tracktus\AppBundle\Entity\User $user Member to add
+     * @param User $user Member to add
      */
     public function addMember(User $user)
     {
         $this->members->add($user);
     }
 
+    /**
+     * Remove a member from the project
+     * @param User $user
+     */
     public function removeMember(User $user)
     {
         $this->members->removeElement($user);
@@ -207,7 +212,7 @@ class Project {
 
     /**
      * Get all the members of the project
-     * @return Doctrine\Common\Collection\ArrayCollection
+     * @return ArrayCollection
      */
     public function getMembers()
     {
@@ -216,7 +221,7 @@ class Project {
 
     /**
      * Determines if a member
-     * @param  Tracktus\AppBundle\Entity\User    $user the user
+     * @param  User    $user the user
      * @return boolean
      */
     public function isMember(User $user)
@@ -263,6 +268,33 @@ class Project {
     {
         $this->startDate = $startDate;
     }
-    
-    
+
+    /**
+     * Add a task to the project
+     * @param Task $task
+     */
+    public function addTask($task)
+    {
+        $this->tasks->add($task);
+    }
+
+    /**
+     * Get the list of tasks relative to a project
+     * @return ArrayCollection
+     */
+    public function getTasks()
+    {
+        return $this->tasks;
+    }
+
+    /**
+     * Remove a task from the project
+     * @param $task
+     */
+    public function removeTask($task)
+    {
+        $this->tasks->removeElement($task);
+    }
+
+
 }

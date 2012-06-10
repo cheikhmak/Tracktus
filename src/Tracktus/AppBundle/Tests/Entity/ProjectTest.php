@@ -4,6 +4,7 @@ namespace Tracktus\AppBundle\Tests\Entity;
 
 use Tracktus\AppBundle\Entity\Project;
 use Tracktus\AppBundle\Entity\User;
+use Tracktus\AppBundle\Entity\Task;
 
 class ProjectTest extends \PHPUnit_Framework_TestCase {
 
@@ -95,5 +96,30 @@ class ProjectTest extends \PHPUnit_Framework_TestCase {
         $this->assertCount(1, $this->project->getMembers());
         $this->assertNotContains($user1, $this->project->getMembers());
         $this->assertContainsOnly($user2, $this->project->getMembers());
+    }
+
+    public function testTaskAddedShouldBePresentInProjectList()
+    {
+        $task = new Task();
+        $this->project->addTask($task);
+        $this->assertCount(1, $this->project->getTasks());
+        $this->assertContains($task, $this->project->getTasks());
+        $this->assertContainsOnly($task, $this->project->getTasks());
+
+    }
+    public function testNumberOfTasksEqualTasksAddedMinusTasksRemoved()
+    {
+        $task1 = new Task();
+        $task2 = new Task();
+        $task3 = new Task();
+
+        $this->project->addTask($task1);
+        $this->project->addTask($task2);
+        $this->project->addTask($task3);
+
+        $this->assertCount(3, $this->project->getTasks());
+        $this->project->removeTask($task3);
+        $this->assertNotContains($task3, $this->project->getTasks());
+        $this->assertCount(2, $this->project->getTasks());
     }
 }
