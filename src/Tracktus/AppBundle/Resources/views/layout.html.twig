@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<div id="header">
-			<h1><a href="{{ path('homepage') }}">TracktUs</a></h1>
+			<h1><a href="{{ path('homepage') }}"><img src="/bundles/tracktusapp/images/logo.png" alt="tracktus" /></a></h1>
 			<div id="user_info">
 				{% if is_granted('ROLE_USER') %}
 					<a href="{{ path('fos_user_security_logout') }}">Logout</a>
