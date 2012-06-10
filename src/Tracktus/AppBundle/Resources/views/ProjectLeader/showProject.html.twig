@@ -3,4 +3,11 @@
 
 {% block content %}
     {{ project.name }} {{ project.description }}
+    <div id="tasks">
+        {% for task in project.tasks %}
+        <div class="task">
+            {{ task.name }}
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}
