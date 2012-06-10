@@ -21,7 +21,7 @@
         border: 0;  
         font-size: 100%;  
         font: inherit;  
-        vertical-align: baseline;
+        vertical-align: baselinebaseline;
     }  
     /* HTML5 display-role reset for older browsers */  
     article, aside, details, figcaption, figure,  
@@ -47,106 +47,6 @@
         border-spacing: 0;  
     }
 
-    body, div, h1, img, form {
-        margin: 0; padding: 0; border: 0;
+    #header {
+        
     }
-
-    html{
-        width: 100%;
-        min-width: 740px;
-    }
-
-
-    #header{
-        background:#d2e4fc url('/bundles/tracktusapp/images/header-bg.png')  repeat;
-        margin: 0; padding: 0;
-    }
-
-    #header h1{
-        margin-left:20px;
-    }
-
-    #header a {
-        margin-top:20px;
-    }
-
-
-    body {
-        font: 100% normal Arial, Helvetica, sans-serif ;
-    }
-
-    #content{
-        background:#f6f9f9 url('/bundles/tracktusapp/images/content-bg.png') repeat;
-        height:500px;
-
-
-
-    }
-
-
-    .loginForm{
-
-        background:#fefefe ;
-        position:absolute; top:20%; left:50%;
-        border: 2px solid #9a9a9a;
-        border-radius:10px;
-        width:30%;
-        padding-top:20px;
-
-    }
-
-    label{
-        padding-left:20px;
-
-    }
-
-    a{
-        color:#d7d7d7;
-    }
-
-    input{
-        display:block;
-        margin-left:20px;
-        border: 1px solid #d1e4fe;
-        border-radius:7px;
-    }
-
-    #submit{
-        background:#a1d8f0;
-        color:white;
-        text-align:center;
-        padding:10px 25px;
-        float:right;
-        margin-right:40px;
-        margin-bottom:20px;
-        border-radius:20px;
-        Edit CSSWeb Developer Dashboard;
-
-
-    }
-
-    #remember_me{
-        display:inline;
-
-    }
-
-    #formFooter{
-        position:relative;
-        background: #f0f5f7;
-        padding-top:50px;
-        padding-bottom:30px;
-    }
-
-
-
-
-
-    #footer{
-        position: absolute;
-        bottom: 0px;
-        height: 120px;
-        width: 100%;
-        background: #f6f9f9 url('/bundles/tracktusapp/images/waves.png') repeat-x;
-
-    }
-
