@@ -1,0 +1,9 @@
+{% extends 'TracktusAppBundle::layout.html.twig' %}
+{% block title %} {{ 'project.setting'|trans() }} ({{ project.name }}) - Tracktus {% endblock %}
+
+{% block content %}
+    <form action="{{ path('project_config', {'id': project.id}) }}" method="POST" {{ form_enctype(configForm) }}>
+        {{ form_widget(configForm) }}
+        <input type="submit"/>
+    </form>
+{% endblock %}

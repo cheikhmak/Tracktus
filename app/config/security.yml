@@ -1,2 +1,2 @@
 imports:
-    - {resource: "@TracktusUserBundle/Resources/config/security.yml"}
+    - {resource: "@TracktusAppBundle/Resources/config/security.yml"}

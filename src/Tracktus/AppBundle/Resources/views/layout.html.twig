@@ -3,19 +3,21 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>{% block title %}Tracktus{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="{{asset('bundles/tracktusapp/css/bootstrap.css')}}" />
+		<link rel="stylesheet" type="text/css" href="{{asset('bundles/tracktusapp/css/bootstrap-responsive.css')}}" />
 		<link rel="stylesheet" type="text/css" href="{{asset('bundles/tracktusapp/css/main.css')}}" />
 	</head>
 	<body>
-		<div id="header">
-			<h1> TracktUs </h1>
-			<div id="user_info">
-				{% if is_granted('ROLE_USER') %}
-					<a href="{{ path('fos_user_security_logout') }}">Logout</a>
-				{% endif %}
-			</div>
+		<div id="header" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a href="{{ path('homepage') }}" class="brand">TracktUs</a>
+                </div>
+            </div>
 			{% block header %}{% endblock %}
 		</div>
-		<div id="content">
+
+		<div id="content" class="container">
 			{% block content %}{% endblock %}
 		</div>
 		<div id="footer">

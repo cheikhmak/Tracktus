@@ -7,9 +7,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Configuration;
 use Tracktus\AppBundle\Entity\Project;
-use Tracktus\AppBundle\Entity\ProjectManager;
-use Tracktus\UserBundle\Entity\User;
+use Tracktus\AppBundle\Entity\User;
 use Tracktus\AppBundle\Form\Type\ProjectFormType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
 * Project Leader controller
@@ -18,10 +18,9 @@ class ProjectLeaderController extends Controller
 {
     /**
      * Show Project Leader Dashboard
-     * @param  Request $request Incomming Request
      * @return Response
      */
-    public function showDashboardAction(Request $request)
+    public function showDashboardAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
         
@@ -34,7 +33,7 @@ class ProjectLeaderController extends Controller
 
     /**
      * Show project details
-     * @param  int $id Project's id
+     * @param Project $project The project
      * @return Response
      * @Configuration\Route("/project/{id}", requirements={"id" = "\d+"}, name="project_show")
      * @Configuration\Method("GET")
@@ -47,6 +46,7 @@ class ProjectLeaderController extends Controller
 
     /**
      * Create a new blank project
+     * @param Request $request
      * @return Response
      * @Configuration\Route("/project/new", name="project_new")
      * @Configuration\Method({"GET", "POST"})
@@ -55,6 +55,7 @@ class ProjectLeaderController extends Controller
     {
         $project = new Project();
         $form = $this->createForm(new ProjectFormType(), $project);
+        $form->remove('startDate');
 
         if ($request->getMethod() === 'POST') {
             $form->bindRequest($request);
@@ -65,11 +66,52 @@ class ProjectLeaderController extends Controller
                 $project->setCreator($user);
                 $em->persist($project);
                 $em->flush();
-                return $this->redirect($this->generateUrl('dashboard'));
+                return $this->redirect($this->generateUrl('project_show', 
+                        array('id'=>$project->getId())));
             }
         }
         return $this->render('TracktusAppBundle:ProjectLeader:newProject.html.twig',
                 array('form' => $form->createView()));
         
+    }
+    
+    /**
+     * Delete a project
+     * @param Project $project
+     * @return RedirectResponse
+     * @Configuration\Route("/project/delete/{id}", requirements={"id" = "\d+"}, name="project_delete")
+     * @Configuration\Method("GET")
+     */
+    public function deleteProject(Project $project) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->remove($project);
+        $em->flush();
+        return $this->redirect($this->generateUrl("dashboard"));
+    }
+    
+    /**
+     * Configure the parameters of the project
+     * @param Project $project
+     * @return Response
+     * @Configuration\Route("/project/config/{id}", requirements={"id" = "\d+"}, name="project_config")
+     * @Configuration\Method({"GET", "POST"})
+     */
+    public function configureParameters(Project $project)
+    {
+        $form = $this->createForm(new ProjectFormType(), $project);
+        $request = $this->getRequest();
+        if ($request->getMethod() === 'POST')
+        {
+            $form->bindRequest($request);
+            if ($form->isValid())
+            {
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($project);
+                $em->flush();
+            }
+        }
+        return $this->render('TracktusAppBundle:ProjectLeader:parameters.html.twig',
+                array('configForm' => $form->createView(),
+                         'project' => $project));
     }
 }

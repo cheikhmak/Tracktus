@@ -12,13 +12,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
 * Data fixtures for Projects
 */
-class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
 {
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container =$container;
-    }
-
 	public function load(ObjectManager $manager)
 	{
         $project1 = new Project("Foo Project", "Create a foo thing");
@@ -30,6 +25,7 @@ class LoadProjectData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($project1);
         $manager->persist($project2);
 
+        $this->addReference('fooProject', $project1);
         $manager->flush();
 	}
 

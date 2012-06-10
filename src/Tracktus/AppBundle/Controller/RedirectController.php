@@ -15,11 +15,20 @@ class RedirectController extends Controller
      * Redirect the to the dashboard route
      * @param  Request $request Incomming request
      * @return RedirectResponse
-     * @Configuration\Route("/")
+     * @Configuration\Route("/", name="homepage")
      */
     public function redirectToDashboardAction(Request $request)
     {
-        return $this->redirect($this->generateUrl('dashboard'));
+        /**
+         * @var Tracktus\AppBundle\Entity\User
+         */
+        $user = $this->get('security.context')->getToken()->getUser();
+        
+        if ($user->hasRole('USER_PROJECT_LEADER')) {
+            return $this->redirect($this->generateUrl('dashboard'));
+        }
+        //return new Response($user->getUserName());
+        
     }
 
     /**

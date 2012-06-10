@@ -1,5 +1,5 @@
 TracktusUserBundle:
-    resource: "@TracktusUserBundle/Resources/config/routing.yml"
+    resource: "@TracktusAppBundle/Resources/config/routing.yml"
 
 TracktusAppBundle:
     resource: "@TracktusAppBundle/Controller/"

@@ -2,9 +2,10 @@
 
 namespace Tracktus\AppBundle\Entity;
 
-use Tracktus\UserBundle\Entity\User;
+use Tracktus\AppBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Tracktus\AppBundle\Entity\Task;
 
 /**
  * @ORM\Entity(repositoryClass="Tracktus\AppBundle\Entity\Repository\ProjectRepository")
@@ -25,55 +26,68 @@ class Project {
     /**
      * Name of the project
      * @var string
-	 * @ORM\Column(type="string", unique="true")
+     * @ORM\Column(type="string", unique="true")
      */
     private $name;
 
     /**
      * Description of the project
      * @var string
-	 * @ORM\Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $description;
 
     /**
      * Creation date of the project
      * @var \DateTime
-	 * @ORM\Column(type="date")
+     * @ORM\Column(type="date")
      */
     private $creationDate;
 
     /**
+     * Start date of the project
+     * @var \DateTime
+     * @ORM\Column(type="date", nullable="true")
+     */
+    private $startDate;
+    /**
      * Manager of the project
-     * @var Tracktus\UserBundle\Entity\User
-	 * @ORM\ManyToOne(targetEntity="Tracktus\UserBundle\Entity\User")
+     * @var User
+     * @ORM\ManyToOne(targetEntity="Tracktus\AppBundle\Entity\User")
      */
     private $manager;
 
     /**
      * Creator of the project
-     * @var Tracktus\UserBundle\Entity\User
-	 * @ORM\ManyToOne(targetEntity="Tracktus\UserBundle\Entity\User")
+     * @var User
+     * @ORM\ManyToOne(targetEntity="Tracktus\AppBundle\Entity\User")
      */
     private $creator;
 
     /**
      * Members that collaborate on this project
-     * @var Doctrine\Common\Collections\ArrayCollection
-	 * @ORM\ManyToMany(targetEntity="Tracktus\UserBundle\Entity\User")
-	 * @ORM\JoinTable(name="users_projects",
-	 *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-	 *      inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")}
-	 *      )
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Tracktus\AppBundle\Entity\User")
+     * @ORM\JoinTable(name="users_projects",
+     *       joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *       inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")}
+     *       )
      */
     private $members;
 
     /**
      * Indicates whether a project is finished or not
      * @var bool
-	 * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean")
      */
     private $finished;
+
+    /**
+     * Tasks relative to the project
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Tracktus\AppBundle\Entity\Task", mappedBy="project")
+     */
+    private $tasks;
 
     /**
      * Constructor
@@ -86,6 +100,7 @@ class Project {
         $this->creationDate = new \DateTime();
         $this->members = new ArrayCollection();
         $this->finished = false;
+        $this->tasks = new ArrayCollection();
     }
 
     /**
@@ -143,7 +158,7 @@ class Project {
 
     /**
      * Return the manager of the project
-     * @return Tracktus\UserBundle\Entity\User
+     * @return User
      */
     public function getManager()
     {
@@ -187,8 +202,17 @@ class Project {
     }
 
     /**
+     * Remove a member from the project
+     * @param User $user
+     */
+    public function removeMember(User $user)
+    {
+        $this->members->removeElement($user);
+    }
+
+    /**
      * Get all the members of the project
-     * @return \Doctrine\Common\Collection\ArrayCollection
+     * @return ArrayCollection
      */
     public function getMembers()
     {
@@ -208,6 +232,7 @@ class Project {
     /**
      * Set if the project is finished
      * @param boolean $state the state of the project
+     * @throws \InvalidArgumentException if $state is not a boolean
      */
     public function setFinished($state)
     {
@@ -225,4 +250,51 @@ class Project {
     {
         return $this->finished;
     }
+    
+    /**
+     * Return the start date of the project
+     * @return \DateTime
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+    
+    /**
+     * Set the start date of the project
+     * @param \DateTime $startDate The start date
+     */
+    public function setStartDate(\DateTime $startDate)
+    {
+        $this->startDate = $startDate;
+    }
+
+    /**
+     * Add a task to the project
+     * @param Task $task
+     */
+    public function addTask($task)
+    {
+        $this->tasks->add($task);
+    }
+
+    /**
+     * Get the list of tasks relative to a project
+     * @return ArrayCollection
+     */
+    public function getTasks()
+    {
+        return $this->tasks;
+    }
+
+    /**
+     * Remove a task from the project
+     * @param $task
+     */
+    public function removeTask($task)
+    {
+        $this->tasks->removeElement($task);
+    }
+
+
 }
